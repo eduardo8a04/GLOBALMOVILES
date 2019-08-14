@@ -1,0 +1,7 @@
+{
+  "name": "SoftCenter",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

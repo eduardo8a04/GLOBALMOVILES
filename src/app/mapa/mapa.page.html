@@ -1,0 +1,23 @@
+<ion-content padding>
+
+<ion-header>
+        <ion-grid>
+                <ion-row justify-content-center align-items-end style="height:100%">
+                        <ion-col text-start padding-top>
+                            <ion-button (click)="loadMap()" shape="round" fill="outline">
+                                <ion-icon slot="start" name="locate"></ion-icon>
+                                Mi ubicación
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+        </ion-grid>
+</ion-header>
+
+  <div class="map-wrapper">
+      <div id="map_center">
+          <img src="../../assets/icon/market.png" />
+      </div>
+      <div #map id="map"></div>
+  </div>
+ 
+</ion-content>

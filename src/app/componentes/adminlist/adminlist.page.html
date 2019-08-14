@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar color = "light">
+    <ion-title align ="center">
+      Panel Administrador 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  padding>
+
+
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/tabs/tab1" color="medium">
+      <ion-icon name="undo"></ion-icon>
+    </ion-fab-button>
+
+   <!--ANADIR PRODUCTOS A TRAVES DE UNA LISTA-->
+  </ion-fab>
+  <ion-item>
+      <ion-label floating>Codigo:</ion-label>
+      <ion-input type="Codigo" [(ngModel)]="productCodigo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Categoria:</ion-label>
+    <ion-input type="Categoria" [(ngModel)]="productCategoria"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Nombre:</ion-label>
+    <ion-input type="Nombre" [(ngModel)]="productNombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Descripción:</ion-label>
+    <ion-input type="Descripción" [(ngModel)]="productDescripcion"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Precio:</ion-label>
+    <ion-input type="Precio" [(ngModel)]="productPrecio"></ion-input>
+  </ion-item>
+
+  <ion-row>
+    <ion-col text-center>
+      <ion-button (click)="CreateRecord()" [disabled]="!productCodigo || !productCategoria || !productNombre">
+        
+        &nbsp;Añadir
+      </ion-button>
+    </ion-col>
+  </ion-row>
+    
+   
+   
+    <ion-card *ngFor="let item of products">
+      <span *ngIf="!item.isEdit; else elseBlock">
+        <ion-card-header>
+          <ion-card-title (click)="EditRecord2(item)">{{item.Nombre}}</ion-card-title>
+          <ion-card-subtitle>Codigo: {{item.Codigo}} Categoria: {{item.Categoria}}</ion-card-subtitle>
+          <ion-card-subtitle>{{item.Descripcion}}</ion-card-subtitle>
+          <ion-card-subtitle>{{item.Precio}}</ion-card-subtitle>
+        </ion-card-header>
+
+
+
+
+        <!--BOTONES DE EDICION Y ELIMINACION-->
+        <ion-card-content>          
+          <ion-button shape="round" color="success" size="small" (click)="EditRecord(item)">          
+          &nbsp;Editar   
+          </ion-button>
+
+          <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">            
+            &nbsp;Eliminar   
+          </ion-button>          
+        </ion-card-content>
+
+
+    </span>
+      <ng-template #elseBlock>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  Editar
+                </ion-col>
+                <ion-col>
+                  <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                    Cancel
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label><strong>Codigo:</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.EditCodigo"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Categoria:</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.EditCategoria"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Nombre:</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.EditNombre"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label><strong>Descripcion:</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.EditDescripcion"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label><strong>Precio:</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.EditPrecio"></ion-input>
+            </ion-item>
+                <ion-col>
+                  <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                    Actualizar
+                  </ion-button>
+                </ion-col>
+        </ion-card-content>
+      </ng-template>
+    </ion-card>
+   
+  </ion-content>
